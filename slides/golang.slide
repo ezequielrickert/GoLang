@@ -1,0 +1,151 @@
+Brief overview about Golang
+28 November 2024
+
+Ezequiel Rickert
+erickert@mail.austral.edu.ar
+Information Taken from:
+https://go.dev/doc/effective_go
+
+* Brief History
+- Developed by Google in 2007.
+- Hope to solve C++ complexity.
+- Created to be simple and efficient.
+- Low-level language with high-level features.
+- Compiled language.
+.image ./../images/Golang-Logo.png 250 400
+
+* Names
+- Case Sensitivity, camelCase for private and PascalCase for public.
+- Declared for importing packages.
+- Often made private with use of private Getter.
+.play ./../main/names.go /^//START1/,/^//END1/
+- Interface names are often made by adding -er to the end of the struct name.
+.code ./../main/names.go /^//START2/,/^//END2/
+
+
+* Semi-colons
+- Not needed, except for multiple statements in a single line.
+- Go compiler inserts them automatically: "if the newline comes after a token that could end a statement, a semicolon is inserted".
+.play ./../main/semicolons.go /^//START1/,/^//END1/
+- Brace must be at the end of the line.
+.code ./../main/semicolons.go /^//START2/,/^//END2/
+
+
+* Control Structures Overview
+- if, else, switch, for.
+- No parentheses, but braces are mandatory.
+- No while, but for can be used as a while.
+- Declaration and condition can be done in the same line _(_Should_be_separated_by_semi-colons_)_.
+
+
+* If-else
+- Basic if-else:
+.play ./../main/ifelse.go /^//START1/,/^//END1/
+- Complex if-else, redifining variables:
+.play ./../main/ifelse.go /^//START2/,/^//END2/
+
+* For loop
+- Classic for loop:
+.play ./../main/for.go /^//START1/,/^//END1/
+- While loop:
+.play ./../main/for.go /^//START2/,/^//END2/
+
+* For continued...
+- Infinite loop:
+.play ./../main/for.go /^//START3/,/^//END3/
+
+* Switch
+- Basic switch:
+.play ./../main/switch.go /^//START1/,/^//END1/
+- Type switch _(_Using_basic_switch_with_'_'_)_ :
+.play ./../main/switch.go /^//START2/,/^//END2/
+
+* Functions
+- Basic function:
+.code ./../main/functions.go /^//START1/,/^//END1/
+- Multiple return values:
+.code ./../main/functions.go /^//START2/,/^//END2/
+
+* More about Functions...
+- Named return values:
+.code ./../main/functions.go /^//START3/,/^//END3/
+- Naming declared in return value.
+- Named return values are initialized with zero values.
+- On *"return"* statement, the named return values are used as the return values.
+
+* Defer
+- Defer is used to ensure that a function call is performed later in a program's execution, usually for purposes of cleanup.
+- LIFO order, last defer is the first to be executed.
+.play ./../main/defer.go /^//START1/,/^//END1/
+- Clearer reading *(*I*disagree,*non*sequential*adds*complexity*)*:
+.play ./../main/defer.go /^//START2/,/^//END2/
+
+* Arrays
+- Arrays are not pointers, they are values.
+- Passing an array to a function will create a copy of the array.
+- The size of an array is part of its type.
+.play ./../main/arrays.go /^//START1/,/^//END1/
+
+* Slices
+- Slices are like references to arrays.
+- A slice does not store any data, it just describes a section of an underlying array.
+- Changing the elements of a slice modifies the corresponding elements of its underlying array.
+- Other slices that share the same underlying array will see those changes.
+- Slices work like C pointers.
+.play ./../main/slices.go /^//START/,/^//END/
+
+* Data
+- New: Allocates memory for a single value of the specified type and returns a pointer to it.
+- In new, the zero value is returned.
+- Make: Allocates memory for a slice and returns a slice with the length and capacity set to the specified size.
+- In make, there is no zero value just slice with required space.
+.play ./../main/structs.go /^//START/,/^//END/
+
+* Maps
+- Maps work like in any other language.
+- However, if not found, it returns the zero value of the type.
+- In order to check if a key exists, use the second return value.
+.play ./../main/maps.go /^//START/,/^//END/
+
+* Initialization
+
+* Methods
+- Methods are functions with a special receiver argument.
+- This receiver is used in the method body, similar to self in Rust.
+- Methods are defined on types, not on instances.
+- Receiver can be a pointer or a value.
+- Pointer modifies the original value, while value does not due to the copy.
+
+* Methods Example
+.play ./../main/methods.go /^//START/,/^//END/
+
+* Interfaces
+- Interfaces are a collection of method signatures.
+- A type implements an interface by implementing its methods.
+- Similar to Rust's traits.
+- No explicit declaration of intent is needed *(*Difference*with*Rust*)*.
+
+* Interfaces Example
+.play ./../main/interfaces.go /^//START/,/^//END/
+
+* Conversion
+
+* Errors
+- Errors are values.
+- They are returned by functions.
+- They are checked by the caller.
+- In case of success, nil is returned.
+.play ./../main/errors.go /^//START1/,/^//END1/
+
+* Implementing Errors
+- Implementing errors is simple.
+- Just implement the Error() method.
+- This is an example of a custom error:
+.play ./../main/errors.go /^//START2/,/^//END2/
+
+* Panic and Recover
+- Panic is used to terminate a program.
+- Recover is used to regain control of a panicking goroutine.
+- Similar to try-catch in other languages.
+- Used with defer to wait for a panic on function end.
+.play ./../main/panic.go /^//START/,/^//END/
