@@ -10,7 +10,6 @@
 ```
 3. Run the presentation
 ```bash
-  cd GoLang
   present
 ```
 4. Open the browser and navigate to http://127.0.0.1:3999

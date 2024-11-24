@@ -97,8 +97,7 @@ https://go.dev/doc/effective_go
 * Data
 - New: Allocates memory for a single value of the specified type and returns a pointer to it.
 - In new, the zero value is returned.
-- Make: Allocates memory for a slice and returns a slice with the length and capacity set to the specified size.
-- In make, there is no zero value just slice with required space.
+- Make: Creates slices with a specified length, type is zero-value initialized.
 .play ./../main/structs.go /^//START/,/^//END/
 
 * Maps
@@ -106,8 +105,6 @@ https://go.dev/doc/effective_go
 - However, if not found, it returns the zero value of the type.
 - In order to check if a key exists, use the second return value.
 .play ./../main/maps.go /^//START/,/^//END/
-
-* Initialization
 
 * Methods
 - Methods are functions with a special receiver argument.
@@ -127,8 +124,6 @@ https://go.dev/doc/effective_go
 
 * Interfaces Example
 .play ./../main/interfaces.go /^//START/,/^//END/
-
-* Conversion
 
 * Errors
 - Errors are values.
