@@ -5,7 +5,8 @@ import "fmt"
 // START OMIT
 type Shape interface {
 	Area() float64
-	//Perimeter() float64 <-- Uncomment this line to see the error, as Circle does not implement this method
+	//Perimeter() float64 <-- Uncomment this line to see the error,
+	//as Circle does not implement this method
 }
 
 type Circle struct {

@@ -6,13 +6,14 @@ erickert@mail.austral.edu.ar
 Information Taken from:
 https://go.dev/doc/effective_go
 
+
 * Brief History
 - Developed by Google in 2007.
 - Hope to solve C++ complexity.
 - Created to be simple and efficient.
 - Low-level language with high-level features.
 - Compiled language.
-.image ./../images/Golang-Logo.png 250 400
+.background ./../images/background.png
 
 * Names
 - Case Sensitivity, camelCase for private and PascalCase for public.
@@ -21,6 +22,7 @@ https://go.dev/doc/effective_go
 .play ./../main/names.go /^//START1/,/^//END1/
 - Interface names are often made by adding -er to the end of the struct name.
 .code ./../main/names.go /^//START2/,/^//END2/
+.background ./../images/background.png
 
 
 * Semi-colons
@@ -29,42 +31,60 @@ https://go.dev/doc/effective_go
 .play ./../main/semicolons.go /^//START1/,/^//END1/
 - Brace must be at the end of the line.
 .code ./../main/semicolons.go /^//START2/,/^//END2/
+.background ./../images/background.png
 
+* Initialization and Declaration (Global)
+- It is possible to declare java-style variables, global scope.
+.code ./../main/variables.go /^//START1/,/^//END1/
+- The type can be inferred.
+.background ./../images/background.png
+
+* Initialization and Declaration (Local)
+- Or use the short declaration operator ":=", function scope.
+.code ./../main/variables.go /^//START2/,/^//END2/
+- The short declaration operator can be used to declare multiple variables.
+- It also infers the type of the variable.
+.background ./../images/background.png
 
 * Control Structures Overview
 - if, else, switch, for.
 - No parentheses, but braces are mandatory.
 - No while, but for can be used as a while.
 - Declaration and condition can be done in the same line _(_Should_be_separated_by_semi-colons_)_.
-
+.background ./../images/background.png
 
 * If-else
 - Basic if-else:
 .play ./../main/ifelse.go /^//START1/,/^//END1/
 - Complex if-else, redifining variables:
 .play ./../main/ifelse.go /^//START2/,/^//END2/
+.background ./../images/background.png
 
 * For loop
 - Classic for loop:
 .play ./../main/for.go /^//START1/,/^//END1/
 - While loop:
 .play ./../main/for.go /^//START2/,/^//END2/
+.background ./../images/background.png
 
 * For continued...
 - Infinite loop:
 .play ./../main/for.go /^//START3/,/^//END3/
+.background ./../images/background.png
 
 * Switch
 - Basic switch:
 .play ./../main/switch.go /^//START1/,/^//END1/
 - Type switch _(_Using_basic_switch_with_'_'_)_ :
 .play ./../main/switch.go /^//START2/,/^//END2/
+.background ./../images/background.png
 
 * Functions
 - Basic function:
 .code ./../main/functions.go /^//START1/,/^//END1/
 - Multiple return values:
 .code ./../main/functions.go /^//START2/,/^//END2/
+.background ./../images/background.png
 
 * More about Functions...
 - Named return values:
@@ -72,6 +92,7 @@ https://go.dev/doc/effective_go
 - Naming declared in return value.
 - Named return values are initialized with zero values.
 - On *"return"* statement, the named return values are used as the return values.
+.background ./../images/background.png
 
 * Defer
 - Defer is used to ensure that a function call is performed later in a program's execution, usually for purposes of cleanup.
@@ -79,12 +100,14 @@ https://go.dev/doc/effective_go
 .play ./../main/defer.go /^//START1/,/^//END1/
 - Clearer reading *(*I*disagree,*non*sequential*adds*complexity*)*:
 .play ./../main/defer.go /^//START2/,/^//END2/
+.background ./../images/background.png
 
 * Arrays
 - Arrays are not pointers, they are values.
 - Passing an array to a function will create a copy of the array.
 - The size of an array is part of its type.
 .play ./../main/arrays.go /^//START1/,/^//END1/
+.background ./../images/background.png
 
 * Slices
 - Slices are like references to arrays.
@@ -93,18 +116,21 @@ https://go.dev/doc/effective_go
 - Other slices that share the same underlying array will see those changes.
 - Slices work like C pointers.
 .play ./../main/slices.go /^//START/,/^//END/
+.background ./../images/background.png
 
 * Data
 - New: Allocates memory for a single value of the specified type and returns a pointer to it.
-- In new, the zero value is returned.
-- Make: Creates slices with a specified length, type is zero-value initialized.
+- In new, the reference to the zero value is returned.
+- Make: Creates slices with a specified length and capacity, value is zero-value initialized.
 .play ./../main/structs.go /^//START/,/^//END/
+.background ./../images/background.png
 
 * Maps
 - Maps work like in any other language.
 - However, if not found, it returns the zero value of the type.
 - In order to check if a key exists, use the second return value.
 .play ./../main/maps.go /^//START/,/^//END/
+.background ./../images/background.png
 
 * Methods
 - Methods are functions with a special receiver argument.
@@ -112,18 +138,22 @@ https://go.dev/doc/effective_go
 - Methods are defined on types, not on instances.
 - Receiver can be a pointer or a value.
 - Pointer modifies the original value, while value does not due to the copy.
+.background ./../images/background.png
 
 * Methods Example
 .play ./../main/methods.go /^//START/,/^//END/
+.background ./../images/background.png
 
 * Interfaces
 - Interfaces are a collection of method signatures.
 - A type implements an interface by implementing its methods.
 - Similar to Rust's traits.
 - No explicit declaration of intent is needed *(*Difference*with*Rust*)*.
+.background ./../images/background.png
 
 * Interfaces Example
 .play ./../main/interfaces.go /^//START/,/^//END/
+.background ./../images/background.png
 
 * Errors
 - Errors are values.
@@ -131,12 +161,14 @@ https://go.dev/doc/effective_go
 - They are checked by the caller.
 - In case of success, nil is returned.
 .play ./../main/errors.go /^//START1/,/^//END1/
+.background ./../images/background.png
 
 * Implementing Errors
 - Implementing errors is simple.
 - Just implement the Error() method.
 - This is an example of a custom error:
-.play ./../main/errors.go /^//START2/,/^//END2/
+.code ./../main/errors.go /^//START2/,/^//END2/
+.background ./../images/background.png
 
 * Panic and Recover
 - Panic is used to terminate a program.
@@ -144,3 +176,4 @@ https://go.dev/doc/effective_go
 - Similar to try-catch in other languages.
 - Used with defer to wait for a panic on function end.
 .play ./../main/panic.go /^//START/,/^//END/
+.background ./../images/background.png

@@ -9,11 +9,8 @@ var timeZone = map[string]int{
 	"PST": -8 * 60 * 60,
 }
 
-var seconds int
-var ok bool
-
 func main() {
-	seconds, ok = timeZone["UTC"]
+	seconds, ok := timeZone["UTC"]
 	println(seconds, ok) // 0 true
 	seconds, ok = timeZone["Invalid"]
 	println(seconds, ok) // 0 false

@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 
 }
@@ -12,26 +14,25 @@ func basicFunction() {
 // END1 OMIT
 
 // START2 OMIT
-func nextInt(b []byte, i int) (int, int) {
-	for ; i < len(b) && !isDigit(b[i]); i++ {
+// Function to calculate the quotient and remainder of a division
+func divide(dividend int, divisor int) (int, int, error) {
+	if divisor == 0 {
+		return 0, 0, fmt.Errorf("division by zero")
 	}
-	x := 0
-	for ; i < len(b) && isDigit(b[i]); i++ {
-		x = x*10 + int(b[i]) - '0'
-	}
-	return x, i
+	quotient := dividend / divisor
+	remainder := dividend % divisor
+	return quotient, remainder, nil
 }
 
 // END2 OMIT
 
 // START3 OMIT
-func ReadFull(r Reader, buf []byte) (n int, err error) {
-	for len(buf) > 0 && err == nil {
-		var nr int
-		nr, err = r.Read(buf)
-		n += nr
-		buf = buf[nr:]
+func namedDivide(dividend int, divisor int) (quotient int, remainder int) {
+	if divisor == 0 {
+		return 0, 0
 	}
+	quotient = dividend / divisor
+	remainder = dividend % divisor
 	return
 }
 

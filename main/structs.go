@@ -10,7 +10,6 @@ type Person struct {
 
 func main() {
 	n := new(Person)
-
 	fmt.Printf("%+v\n", n)
 	m := make([]Person, 2, 4) // <- 2 more elements can be added
 	fmt.Printf("%+v\n", m)
