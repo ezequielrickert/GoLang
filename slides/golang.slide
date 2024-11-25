@@ -123,13 +123,6 @@ https://proandroiddev.com/concurrency-vs-parallelism-a-deep-dive-86572b94cbc6
 .play ./../main/slices.go /^//START/,/^//END/
 .background ./../images/background.png
 
-* Data
-- New: Allocates memory for a single value of the specified type and returns a pointer to it.
-- In new, the reference to the zero value is returned.
-- Make: Creates slices with a specified length and capacity, value is zero-value initialized.
-.play ./../main/structs.go /^//START/,/^//END/
-.background ./../images/background.png
-
 * Maps
 - Maps work like in any other language.
 - However, if not found, it returns the zero value of the type.
@@ -190,12 +183,42 @@ or at the very least for the current goroutine.
 Ask yourself "when this happens, should the application immediately crash?"
 If yes, use a panic; otherwise, use an error.
 
+- Usually, panics are not recommended and avoided.
+- Most errors can be handled by returning them.
+
 .link https://stackoverflow.com/questions/44504354/should-i-use-panic-or-return-error
 .background ./../images/background.png
 
+* Data
+- New: Allocates memory for a single value of the specified type and returns a pointer to it (not initialized).
+- In new, the reference to the zero value is returned.
+- Make: Creates slices with a specified length and capacity, initialized.
+.play ./../main/data.go /^//START/,/^//END/
+.background ./../images/background.png
 
+* STOP! Memory Management
+- Stack: Fast, limited size, and automatic.
+- Stack saves "Stack Frames" which contain function variables, when the function finishes the frame is freed.
+- Stack also applies to goroutines, unique stacks for each goroutine (can shrink or grow).
+- Heap: Slower, larger, and manual.
+- Used for long-term storage.
+.image ./../images/memory.png 250 400
+.background ./../images/background.png
 
+* Garbage Collection
+- Go has a garbage collector.
+- It is a concurrent garbage collector, does not stop the execution of the application.
+- It is a tri-color garbage collector:
+*White*: Unreachable objects (may not be analyzed yet).
+*Gray*: Reachable objects, unreachable descendants (may not be analyzed yet).
+*Black*: Reachable objects (analyzed).
 
+- It is a mark-and-sweep garbage collector:
+
+*Mark*: Mark all reachable objects.
+*Sweep*: Free all unreachable objects (*White* objects).
+.link https://bwoff.medium.com/understanding-gos-garbage-collection-415a19cc485c
+.background ./../images/background.png
 
 * Now some new stuff...
 Why is Go over Rust in stackoverflow?
@@ -235,3 +258,21 @@ Why is Go over Rust in stackoverflow?
 - Process reading from a channel will block until a process writes to it.
 .code ./../main/channels.go /^//START1/,/^//END1/
 .background ./../images/background.png
+
+* Benchmark
+- Simple comparison Go vs Rust.
+.code ./../main/benchmark.go /^//START1/,/^//END1/
+- Go: 240.3113184s
+- Rust: 313.9177696s
+.link https://dev.to/mukeshkuiry/go-vs-rust-speed-test-which-one-to-choose-in-2024-1ck
+.background ./../images/background.png
+
+* Conclusion
+- Go is a simple and efficient language.
+- Great for concurrency and parallelism.
+- Grants a new way of thinking about programming.
+- A good choice for hot-request applications.
+.image ./../images/ending.png 300 700
+.background ./../images/background.png
+
+
