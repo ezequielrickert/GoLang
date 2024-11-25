@@ -5,6 +5,9 @@ Ezequiel Rickert
 erickert@mail.austral.edu.ar
 Information Taken from:
 https://go.dev/doc/effective_go
+https://www.youtube.com/watch?v=5Z8skvm4g64
+https://survey.stackoverflow.co/2024/technology/#most-popular-technologies
+https://proandroiddev.com/concurrency-vs-parallelism-a-deep-dive-86572b94cbc6
 
 
 * Brief History
@@ -13,6 +16,7 @@ https://go.dev/doc/effective_go
 - Created to be simple and efficient.
 - Low-level language with high-level features.
 - Compiled language.
+- Strongly typed.
 .background ./../images/background.png
 
 * Names
@@ -37,6 +41,7 @@ https://go.dev/doc/effective_go
 - It is possible to declare java-style variables, global scope.
 .code ./../main/variables.go /^//START1/,/^//END1/
 - The type can be inferred.
+- However, it is not dynamic typing.
 .background ./../images/background.png
 
 * Initialization and Declaration (Local)
@@ -176,4 +181,43 @@ https://go.dev/doc/effective_go
 - Similar to try-catch in other languages.
 - Used with defer to wait for a panic on function end.
 .play ./../main/panic.go /^//START/,/^//END/
+.background ./../images/background.png
+
+* Now some new stuff...
+Why is Go over Rust in stackoverflow?
+.image ./../images/survey.png
+.background ./../images/background.png
+
+* Successful Companies
+- #1 Uber
+- #2 Twitch
+- #3 Dropbox
+- ...
+- #6 Docker
+*Why?*
+
+"... a language that was easy to learn, had better performance, and provided better support for *concurrency*."
+.link https://bairesdev.com/blog/companies-using-golang/
+.background ./../images/background.png
+
+* Concurrency and Parallelism
+- Concurrency is the ability to run multiple programs or parts of a program at the same time granting intervals.
+- Parallelism is the ability to run multiple programs or parts of a program at the same time simultaneously.
+- Parallelism is achieved by using multiple cores.
+- Go works both with concurrency and parallelism depending on the core availability.
+.image ./../images/concurrency.png 300 500
+.background ./../images/background.png
+
+* Goroutines and WaitGroups
+- Goroutines are lightweight threads managed by the Go runtime.
+- WaitGroups are used to wait for goroutines to finish.
+- WaitGroups work like a semaphore and a barrier.
+.code ./../main/concurrency.go /^//START1/,/^//END1/
+.background ./../images/background.png
+
+* Channels
+- Channels are used to communicate between goroutines.
+- Designed to prevent race conditions.
+- Process reading from a channel will block until a process writes to it.
+.code ./../main/channels.go /^//START1/,/^//END1/
 .background ./../images/background.png

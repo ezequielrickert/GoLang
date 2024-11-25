@@ -11,6 +11,7 @@ var assignedGlobalCount = 42 // <- Type can be omitted
 func main() {
 	globalMessage = "Hello from the global scope!" // <- Global variables can be assigned anywhere
 	globalCount = 42
+	//globalCount = "hello" // <- This will not compile, non-dynamic typing
 	fmt.Println(globalMessage)
 	fmt.Println("Global count is:", globalCount)
 }
