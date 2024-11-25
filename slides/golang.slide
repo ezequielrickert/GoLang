@@ -183,6 +183,20 @@ https://proandroiddev.com/concurrency-vs-parallelism-a-deep-dive-86572b94cbc6
 .play ./../main/panic.go /^//START/,/^//END/
 .background ./../images/background.png
 
+* When to use Panic?
+
+You should assume that a panic will be immediately fatal, for the entire program,
+or at the very least for the current goroutine.
+Ask yourself "when this happens, should the application immediately crash?"
+If yes, use a panic; otherwise, use an error.
+
+.link https://stackoverflow.com/questions/44504354/should-i-use-panic-or-return-error
+.background ./../images/background.png
+
+
+
+
+
 * Now some new stuff...
 Why is Go over Rust in stackoverflow?
 .image ./../images/survey.png
